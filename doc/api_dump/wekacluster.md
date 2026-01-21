@@ -330,6 +330,7 @@
 | upgradePaused | bool | Pause upgrade |
 | upgradePausePreCompute | bool | Prevent from moving into compute phase |
 | podTerminationDeactivationTimeout | *metav1.Duration | Timeout duration for deactivating pods that are terminating longer than this duration.<br>When nil (default), the default timeout of 5 minutes is used.<br>When set to 0, deactivation of terminating pods is disabled.<br>Otherwise, the specified duration is used. |
+| paused | *bool | Pause the cluster - all containers will be stopped forcefully.<br>nil (not set): no propagation, allows direct container-level state manipulation.<br>true: pause all containers.<br>false: actively unpause containers that are in paused state. |
 | cancelDeletion | bool | Cancel deletion of the cluster if it is in graceful destroy period, a disaster recovery mechanism |
 
 ---
@@ -401,6 +402,18 @@
 | domainJoinSecret | string |  |
 | userName | string |  |
 | ipRanges | []string | IpRanges specifies floating IP ranges for SMB-W high availability |
+| symlink | *bool | Creation-time configuration flags<br>Symlink enables symlink support for SMB-W shares |
+| domainNetbiosName | string | DomainNetbiosName is the NetBIOS name for the domain |
+| idmapBackend | string | IdmapBackend specifies the identity mapping backend (e.g., "ad", "rfc2307") |
+| defaultDomainMappingFromId | *int | DefaultDomainMappingFromId is the start of the UID/GID range for default domain mapping |
+| defaultDomainMappingToId | *int | DefaultDomainMappingToId is the end of the UID/GID range for default domain mapping |
+| joinedDomainMappingFromId | *int | JoinedDomainMappingFromId is the start of the UID/GID range for joined domain mapping |
+| joinedDomainMappingToId | *int | JoinedDomainMappingToId is the end of the UID/GID range for joined domain mapping |
+| encryption | string | Encryption specifies the encryption level for SMB connections |
+| scaleOutMode | string | ScaleOutMode specifies the scale-out mode for SMB-W clustering |
+| smbConfExtra | string | SmbConfExtra contains additional smb.conf configuration |
+| profile | string | Profile specifies the SMB-W profile (e.g., "smb2", "smb3") |
+| ipPools | []string | IpPools specifies IP pools for SMB-W service assignment |
 
 ---
 
@@ -491,6 +504,8 @@
 | min | int |  |
 | max | int |  |
 | deviceNames | []string |  |
+| rdmaOnly | bool |  |
+| disableRdma | bool |  |
 
 ---
 
